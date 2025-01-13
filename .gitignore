@@ -1,1 +1,20 @@
-# Dependency directoriesnode_modules/BE-WebKampus/node_modules/# Environment files.env# Logslogs*.lognpm-debug.log*# Backup files*.bak*.gho*.ori*.orig*.tmp# Database files*.sqlite*.db# Miscellaneous.DS_StoreThumbs.db
+# Dependency directories
+**/node_modules/
+
+# Logs
+logs
+*.log
+
+# Environment files
+**/.env
+
+# Build outputs
+**/build
+**/dist
+
+# IDE settings
+.vscode/
+.idea/
+
+# Misc
+.DS_Store
