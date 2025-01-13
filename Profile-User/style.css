@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+.profile-header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: -20px;
+}
+.profile-header img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+}
+
+.nama {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tombolEdit {
+    margin-left: 5px;
+}
+
+.button {
+    width: 1px;
+}
+
+.it {
+    border-radius: 20px;
+}
+
+body {
+    background: url(../Landing-Page/image/WhatsApp\ Image\ 2024-12-01\ at\ 12.48.31_e52880ea.jpg) no-repeat fixed;
+    background-size: cover;
+    background-position: center;
+}
+

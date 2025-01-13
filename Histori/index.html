@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histori</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>
+    <div class="navbar">
+        <div class="user">
+            <a href="javascript:void(0)" onclick="userDropdown()"><i class='bx bxs-user-circle'></i>
+            <p>
+                Halo User123!
+            </p>
+        </a>
+
+        <div id="userdropdownMenu" class="userdropdown-menu" style="display: none;">
+            <a href="../Profile-User/index.html">Profile</a>
+            <a href="../Login-Sebagai/index.html">Log Out</a>
+        </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="arrow">
+            <a href="../Tampilan-Awal/index.html"><i class='bx bxs-chevron-left'></i></a>
+        </div>
+    
+        <div class="background">
+            <p><img src="../Bahan/88.png" alt=""></p>
+        </div>
+
+        <div class="content">
+            <div class="gambar">
+                <p>Histori</p> 
+                <img src="../Bahan/5.svg" alt="">
+            </div>
+        
+            <div class="bungkus">
+                <div class="dropdown">
+                    <div class="bungkus2">
+                    <div class="cons">
+                        <button class="dropdown-toggle" onclick="toggleDropdown()">Pertemuan</button>
+                            <ul class="dropdown-menu">
+                                <li onclick="hide()"><p>12 maret 2024</p></li>
+                                <li onclick="hide()"><p>13 maret 2024</p></li>
+                                <li onclick="hide()"><p>14 maret 2024</p></li>
+                                <li onclick="hide()"><p>15 maret 2024</p></li>
+                                <li onclick="hide()"><p>16 maret 2024</p></li>
+                                <li onclick="hide()"><p>17 maret 2024</p></li>
+                                <li onclick="hide()"><p>18 maret 2024</p></li>
+                            </ul>
+                            <p style="width: 270px; padding: 10px; height: 165px; overflow-y: auto; display: none; ;" class="keterangan">Konsultasi Jadwal Kuliah: Dosen memberikan masukan mengenai
+                                mata kuliah yang perlu diambil pada semester berikutnya, serta
+                                beberapa saran untuk memperbaiki rencana studi.
+                                
+                                Tugas Akademik: Dosen mengingatkan untuk segera
+                                menyelesaikan tugas yang tertunda dan memberikan beberapa
+                                referensi tambahan untuk mempermudah pengerjaannya.
+                                
+                                Konsultasi Skripsi/TA: Kami juga membahas kemajuan penelitian
+                                atau skripsi, serta beberapa revisi yang perlu dilakukan untuk
+                                memperbaiki kualitas penelitian.
+                                
+                                Masalah Akademik: Dosen menanyakan perkembangan akademik
+                                saya secara keseluruhan dan memberikan beberapa tips untuk
+                                mengatasi kesulitan yang mungkin saya hadapi.
+                                
+                                Rencana Karir: Dosen memberikan saran terkait peluang karir di
+                                bidang studi saya dan pentingnya membangun keterampilan
+                                tambahan di luar perkuliahan.</p>
+                    </div>
+                    </div>
+                </div>
+            </div>  
+              
+            
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
