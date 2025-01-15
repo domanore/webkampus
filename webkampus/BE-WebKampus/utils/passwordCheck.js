@@ -1,22 +1,43 @@
-const bcrypt = require('bcrypt')
-const LoginModel = require('../models/register')
+const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
-const passwordCheck = async(Induk, table, NIMorNIDN, password, res) => {
-    const Login = LoginModel(Induk, table)
+/**
+ * @param {number} [nim]
+ * @param {number} [nidn]
+ * @param {string} password
+ * @returns {Promise<{ success: boolean, message: string, user: object|null }>}
+ */
+const passwordCheck = async (nim, nidn, password) => {
+  let NIMorNIDN;
+  try {
+    const whereClause = {};
+    if (nim) {
+      whereClause.nim = nim;
+      NIMorNIDN = 'NIM';
+    } else if (nidn) {
+      whereClause.nidn = nidn;
+      NIMorNIDN = 'NIDN';
+    } else {
+      return { success: false, message: 'NIM atau NIDN harus diisi', user: null };
+    }
 
-    const user = await Login.findOne({where: { [Induk]: NIMorNIDN }})
+    const user = await User.findOne({ where: whereClause });
+
     if (!user) {
-        res.status(400).json({ message: `${Induk} tidak ditemukan` });
-        return false;
+      return { success: false, message: `${NIMorNIDN} tidak ditemukan`, user: null };
     }
 
-    const validatePassword = await bcrypt.compare(password, user.password)
-    if (!validatePassword) {
-        res.status(400).json({ message: 'password salah' });
-        return false;
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return { success: false, message: 'Password salah', user: null };
     }
+    return { success: true, message: 'Login berhasil', user };
+    
+  } catch (error) {
+    console.error('Error in passwordCheck:', error);
+    throw error;
+  }
+};
 
-    return user
-}
-
-module.exports = passwordCheck
+module.exports = passwordCheck;

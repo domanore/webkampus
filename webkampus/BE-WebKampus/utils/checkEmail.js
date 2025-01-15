@@ -1,19 +1,27 @@
-const checkEmail = async (model, email, identifier, value, res) => {
-  // Cek apakah email sudah terdaftar
-  const existingEmail = await model.findOne({ where: { email } });
+const User = require('../models/user');
+/**
+ * @param {string} email
+ * @param {number} [nim]
+ * @param {number} [nidn]
+ * @returns {Promise<{ emailExists: boolean, nimExists: boolean, nidnExists: boolean }>}
+ */
+const checkEmail = async (email, nim, nidn) => {
+  try {
+    const emailExists = await User.findOne({ where: { email } });
 
-  // Cek apakah identifier (NIM/NIDN) sudah terdaftar
-  const existingIdentifier = await model.findOne({ where: { [identifier]: value } });
+    const nimExists = nim ? await User.findOne({ where: { nim } }) : false;
 
-  if (existingEmail) {
-    res.status(400).json({ message: 'Email sudah terdaftar' });
-    return true;
+    const nidnExists = nidn ? await User.findOne({ where: { nidn } }) : false;
+
+    return {
+      emailExists: !!emailExists,
+      nimExists: !!nimExists,
+      nidnExists: !!nidnExists
+    };
+  } catch (error) {
+    console.error('Error checking email, NIM, or NIDN:', error);
+    throw error;
   }
-  if (existingIdentifier) {
-    res.status(400).json({ message: `${identifier} sudah terdaftar` });
-    return true;
-  }
-  return false;
 };
 
 module.exports = checkEmail;
