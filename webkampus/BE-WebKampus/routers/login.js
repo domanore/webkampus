@@ -1,46 +1,21 @@
-const express = require('express')
-const router = express.Router()
-const passwordCheck = require('../utils/passwordCheck')
-const session = require('express-session')
+const express = require('express');
+const router = express.Router();
+const passwordCheck = require('../utils/passwordCheck');
 
-router.use(session({
-    secret: 'key',
-    resave: false,
-    saveUninitialized: true
-}))
+router.post('/', async (req, res) => {
+  try {
+    const { nim, nidn, password } = req.body;
 
-router.post('/mahasiswa', async (req, res) => {
-    const { NIM, password } = req.body
+    const { success, message, user } = await passwordCheck(nim, nidn, password);
 
-    try {
-        const user = await passwordCheck("NIM", "mahasiswa", NIM, password, res)
-        if(user) {
-            res.status(200).json({
-                metadata: 'Login Success',
-                data: user
-            })   
-            req.session.user = user
-        }
-    } catch(e) {
-        res.status(500).send(e.message)
+    if (!success) {
+      return res.status(400).json({ success, message });
     }
-})
+    res.status(200).json({ success, message, user });
 
-router.post('/dosen', async (req, res) => {
-    const { NIDN, password } = req.body
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Terjadi kesalahan server', error: error.message });
+  }
+});
 
-    try {
-        const user = await passwordCheck("NIDN", "dosen", NIDN, password, res)
-        if(user) {
-            res.status(200).json({
-                metadata: 'Login Success',
-                data: user
-            })   
-            req.session.user = user
-        }
-    } catch(e) {
-        res.status(500).send(e.message)
-    }
-})
-
-module.exports = router
+module.exports = router;
