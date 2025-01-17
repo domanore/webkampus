@@ -9,18 +9,26 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="">
+        <form id="registerForm">
             <h1>Daftar</h1>
             <div class="input-box">
-                <input type="text" placeholder="NPM/NIDN" required>
+                <input type="text" placeholder="Nama Lengkap" id="name" required>
                 <i class='bx bxs-user' ></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Password" required>
+                <input type="text" placeholder="email" id="email" required>
+                <i class='bx bx-envelope' ></i>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder="NPM" id="nomorInduk" required>
+                <i class='bx bxs-user' ></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Password" id="password" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Konfirmasi Password" required>
+                <input type="password" placeholder="Konfirmasi Password" id="confirmPassword" required>
                 <i class='bx bxs-lock-alt' ></i>
             </div>
 
@@ -38,5 +46,7 @@
            
         </form>
     </div>
+
+<script src="register.js"></script>
 </body>
 </html>

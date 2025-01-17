@@ -3,7 +3,7 @@ const cors = require('cors')
 const sequelize = require('./dbConfig')
 const bodyParser = require('body-parser')
 const app = express()
-const port = 3001
+const port = 3000
 
 const registerEndPoint = require('./routers/register')
 const loginEndPoint = require('./routers/login')
