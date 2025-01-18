@@ -5,12 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault()
 
         const userData = {
-            nidn: document.querySelector('#nidn').value,
-            password: document.querySelector('#password').value
+            identifier: document.querySelector('#nidn').value,
+            password: document.querySelector('#password').value,
+            role: 'dosen'
         }
 
         try {
-            const response = await fetch ('http://localhost:3000/login', {
+            console.log('Login Attempt:', userData);
+
+            const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -18,17 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(userData)
             })
 
-            const user = await response.json()
-            if(!user.success) {
-                alert (user.message)
-                return
-            }
+            console.log('Response Status:', response.status);
 
-            alert('Berhasil Login')
-            sessionStorage.setItem('userData', JSON.stringify(user))
-            window.location.href = '/webkampus/FE-Webkampus/Tampilan-Awal/index.html'
-        } catch (e) {
-            console.log(e.message)
+            const result = await response.json()
+
+            console.log('Login Result:', result);
+
+            if (result.success) {
+                sessionStorage.setItem('userData', JSON.stringify(result.user))
+                window.location.href = '/webkampus/FE-Webkampus/Tampilan-Awal/index.html'
+            } else {
+                alert(result.message || 'Login gagal')
+            }
+        } catch (error) {
+            console.error('Detailed Login Error:', {
+                message: error.message,
+                stack: error.stack
+            });
+            alert('Terjadi kesalahan: ' + error.message)
         }
     })
 })

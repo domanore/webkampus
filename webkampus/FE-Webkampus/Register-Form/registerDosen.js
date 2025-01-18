@@ -4,16 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
 
+        // Validasi password
+        const password = document.querySelector('#password').value
+        const confirmPassword = document.querySelector('#confirmPassword').value
+
+        if (password !== confirmPassword) {
+            alert('Password tidak cocok')
+            return
+        }
+
         const userData = {
             name: document.querySelector('#name').value,
             email: document.querySelector('#email').value,
-            nidn: document.querySelector('#nomorInduk').value,
-            password: document.querySelector('#password').value,
-            confirmPassword: document.querySelector('#confirmPassword').value,
+            nidn: document.querySelector('#nidn').value,
+            password: password,
+            confirmPassword: confirmPassword,
+            rememberMe: document.querySelector('#rememberMe').checked
         }
 
         try {
-            const response = await fetch ('http://localhost:3000/register/dosen', {
+            const response = await fetch('http://localhost:3000/register/dosen', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -21,17 +31,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(userData)
             })
 
-            const user = await response.json()
-            if(!response.ok) {
-                alert (user.error)
-                return
-            }
+            const result = await response.json()
 
-            alert('Berhasil Regsiter')
-            sessionStorage.setItem('userData', JSON.stringify(user))
-            window.location.href = '/webkampus/FE-Webkampus/Login-Form-Dosen/index.html'
-        } catch (e) {
-            console.log(e.message)
-        } 
+            if (result.success) {
+                alert('Berhasil Register')
+                
+                // Simpan data user di session storage jika "Ingat Saya" dicentang
+                if (userData.rememberMe) {
+                    sessionStorage.setItem('userData', JSON.stringify(result.user))
+                }
+
+                // Redirect ke halaman login
+                window.location.href = '/webkampus/FE-Webkampus/Login-Form-Dosen/index.html'
+            } else {
+                alert(result.message)
+            }
+        } catch (error) {
+            console.error('Registrasi error:', error)
+            alert('Terjadi kesalahan saat registrasi')
+        }
     })
 })

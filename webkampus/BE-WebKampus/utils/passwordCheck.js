@@ -1,12 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
-/**
- * @param {number} [nim]
- * @param {number} [nidn]
- * @param {string} password
- * @returns {Promise<{ success: boolean, message: string, user: object|null }>}
- */
 const passwordCheck = async (nim, nidn, password) => {
   let NIMorNIDN;
   try {
