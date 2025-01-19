@@ -4,22 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
 
-        // Validasi password
-        const password = document.querySelector('#password').value
-        const confirmPassword = document.querySelector('#confirmPassword').value
-
-        if (password !== confirmPassword) {
-            alert('Password tidak cocok')
-            return
-        }
-
+        // Ambil data dari form
         const userData = {
             name: document.querySelector('#name').value,
             email: document.querySelector('#email').value,
             nidn: document.querySelector('#nidn').value,
-            password: password,
-            confirmPassword: confirmPassword,
-            rememberMe: document.querySelector('#rememberMe').checked
+            password: document.querySelector('#password').value,
+            confirmPassword: document.querySelector('#confirmPassword').value
         }
 
         try {
@@ -34,21 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await response.json()
 
             if (result.success) {
-                alert('Berhasil Register')
-                
-                // Simpan data user di session storage jika "Ingat Saya" dicentang
-                if (userData.rememberMe) {
-                    sessionStorage.setItem('userData', JSON.stringify(result.user))
-                }
-
+                alert('Registrasi berhasil')
                 // Redirect ke halaman login
-                window.location.href = '/webkampus/FE-Webkampus/Login-Form-Dosen/index.html'
+                window.location.href = '../Login-Form-Dosen/index.html'
             } else {
                 alert(result.message)
             }
         } catch (error) {
-            console.error('Registrasi error:', error)
-            alert('Terjadi kesalahan saat registrasi')
+            console.error('Error:', error)
+            alert('Gagal registrasi')
         }
     })
 })

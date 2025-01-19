@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#loginForm')
-
+    
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
 
-        const userData = {
-            identifier: document.querySelector('#npm').value,
-            password: document.querySelector('#password').value,
-            role: 'mahasiswa' // Tambahan role untuk identifikasi
-        }
+        // Ambil data input
+        const nim = document.querySelector('#nim').value
+        const password = document.querySelector('#password').value
 
         try {
             const response = await fetch('http://localhost:3000/login', {
@@ -16,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(userData)
+                body: JSON.stringify({
+                    nim,
+                    password
+                })
             })
 
             const result = await response.json()
@@ -26,14 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('userData', JSON.stringify(result.user))
                 
                 // Redirect ke halaman utama
-                window.location.href = '/webkampus/FE-Webkampus/Tampilan-Awal/index.html'
+                window.location.href = '../Tampilan-Awal/index.html'
             } else {
-                // Tampilkan pesan error
                 alert(result.message)
             }
         } catch (error) {
-            console.error('Login error:', error)
-            alert('Terjadi kesalahan saat login')
+            console.error('Error:', error)
+            alert('Gagal login')
         }
     })
 })

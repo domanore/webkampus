@@ -1,66 +1,42 @@
-const express = require('express');
-const router = express.Router();
-const passwordCheck = require('../utils/passwordCheck');
-const User = require('../models/user');
+const express = require('express')
+const router = express.Router()
+const User = require('../models/user')
+const passwordCheck = require('../utils/passwordCheck')
 
 router.post('/', async (req, res) => {
-  try {
-    const { identifier, password, role } = req.body;
+    try {
+        const { nidn, nim, password } = req.body
+        let identifier, role
 
-    console.log('Login Request:', { 
-      identifier, 
-      role, 
-      passwordLength: password.length 
-    });
+        // Tentukan identifier dan role berdasarkan input
+        if (nidn) {
+            identifier = nidn
+            role = 'dosen'
+        } else if (nim) {
+            identifier = nim
+            role = 'mahasiswa'
+        } else {
+            return res.status(400).json({
+                success: false,
+                message: 'NIDN atau NIM harus diisi'
+            })
+        }
 
-    const user = await User.findOne({
-      where: role === 'mahasiswa' 
-        ? { nim: String(identifier) } 
-        : { nidn: String(identifier) }
-    });
+        // Gunakan fungsi passwordCheck untuk validasi
+        const result = await passwordCheck(identifier, password, role)
 
-    console.log('User Found:', user);
-
-    if (!user) {
-      return res.status(404).json({ 
-        success: false, 
-        message: 'User tidak ditemukan' 
-      });
+        if (result.success) {
+            res.status(200).json(result)
+        } else {
+            res.status(401).json(result)
+        }
+    } catch (error) {
+        console.error('Error login:', error)
+        res.status(500).json({
+            success: false,
+            message: 'Gagal login'
+        })
     }
+})
 
-    const { success, message, user: authenticatedUser } = await passwordCheck(
-      role === 'mahasiswa' ? identifier : null,
-      role === 'dosen' ? identifier : null,
-      password
-    );
-
-    if (!success) {
-      return res.status(400).json({ success, message });
-    }
-
-    res.status(200).json({ 
-      success, 
-      message, 
-      user: {
-        id: authenticatedUser.id,
-        name: authenticatedUser.name,
-        email: authenticatedUser.email,
-        role: authenticatedUser.role
-      }
-    });
-
-  } catch (error) {
-    console.error('Detailed Login Error:', {
-      message: error.message,
-      stack: error.stack
-    });
-
-    res.status(500).json({ 
-      success: false, 
-      message: 'Terjadi kesalahan server', 
-      errorDetail: error.message 
-    });
-  }
-});
-
-module.exports = router;
+module.exports = router

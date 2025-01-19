@@ -1,3 +1,21 @@
+// Tambahkan script untuk menampilkan nama user
+document.addEventListener('DOMContentLoaded', () => {
+    // Ambil data user dari session storage
+    const userData = JSON.parse(sessionStorage.getItem('userData'))
+
+    if (userData) {
+        // Update nama user di navbar
+        const userNameElement = document.querySelector('.user p')
+        if (userNameElement) {
+            userNameElement.textContent = `Halo ${userData.name}!`
+        }
+    } else {
+        // Jika tidak ada data user, kembalikan ke halaman login
+        window.location.href = '../Login-Sebagai/index.html'
+    }
+})
+
+// Fungsi dropdown user
 function userDropdown() {
     const userdropdown = document.getElementById("userdropdownMenu");
     userdropdown.style.display = userdropdown.style.display === "none" ? "block" : "none";
