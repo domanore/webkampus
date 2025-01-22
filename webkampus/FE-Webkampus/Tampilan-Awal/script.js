@@ -6,8 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (userData) {
         // Update nama user di navbar
         const userNameElement = document.querySelector('.user p')
+        const userPhotoElement = document.querySelector('.user img') // Tambahkan ini jika ada elemen foto
+
         if (userNameElement) {
             userNameElement.textContent = `Halo ${userData.name}!`
+        }
+        
+        // Tambahkan foto profil jika tersedia
+        if (userPhotoElement && userData.profilePhoto) {
+            userPhotoElement.src = `http://localhost:3000${userData.profilePhoto}`
         }
     } else {
         // Jika tidak ada data user, kembalikan ke halaman login

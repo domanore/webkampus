@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: url(../Landing-Page/image/WhatsApp\ Image\ 2024-12-01\ at\ 12.48.31_e52880ea.jpg) no-repeat fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2%;
+    background-color: rgba(1, 1, 1, 0.567);
+    border-bottom: 1px solid #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+.notifikasi-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 100px 20px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.filter-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-container select, 
+.filter-container button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.notifikasi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notifikasi-item {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.notifikasi-item:hover {
+    background-color: #e9ecef;
+}
+
+.notifikasi-item .content {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.notifikasi-item button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.notifikasi-item button:hover {
+    background-color: #0056b3;
+}
+
+.loading, .empty-state {
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

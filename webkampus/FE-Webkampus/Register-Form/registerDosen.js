@@ -10,7 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
             email: document.querySelector('#email').value,
             nidn: document.querySelector('#nidn').value,
             password: document.querySelector('#password').value,
-            confirmPassword: document.querySelector('#confirmPassword').value
+            confirmPassword: document.querySelector('#confirmPassword').value,
+            // Optional: tambahkan field tambahan
+            fakultas: document.querySelector('#fakultas')?.value || null,
+            prodi: document.querySelector('#prodi')?.value || null,
+            telepon: document.querySelector('#telepon')?.value || null
         }
 
         try {
@@ -26,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (result.success) {
                 alert('Registrasi berhasil')
-                // Redirect ke halaman login
+                // Redirect ke halaman login dosen
                 window.location.href = '../Login-Form-Dosen/index.html'
             } else {
                 alert(result.message)

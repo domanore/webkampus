@@ -26,9 +26,18 @@ router.post('/', async (req, res) => {
         const result = await passwordCheck(identifier, password, role)
 
         if (result.success) {
-            res.status(200).json(result)
-        } else {
-            res.status(401).json(result)
+            res.status(200).json({
+                success: true,
+                user: {
+                    id: result.user.id,
+                    name: result.user.name,
+                    email: result.user.email,
+                    role: result.user.role,
+                    profilePhoto: result.user.profilePhoto, // Tambahkan ini
+                    nim: result.user.nim,
+                    nidn: result.user.nidn
+                }
+            })
         }
     } catch (error) {
         console.error('Error login:', error)

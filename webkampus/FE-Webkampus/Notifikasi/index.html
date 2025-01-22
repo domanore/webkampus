@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifikasi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="navbar">
+        <div class="user">
+            <a href="javascript:void(0)" onclick="userDropdown()">
+                <i class='bx bxs-user-circle'></i>
+                <p id="userName">Halo User!</p>
+            </a>
+
+            <div id="userdropdownMenu" class="userdropdown-menu" style="display: none;">
+                <a href="../Profile-User/index.html">Profile</a>
+                <a href="../Login-Sebagai/index.html">Log Out</a>
+            </div>
+        </div>
+
+        <div class="logo">
+            <img src="../Landing-Page/image/logo kebanggan.png" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="arrow">
+            <a href="../Tampilan-Awal/index.html">
+                <i class='bx bxs-chevron-left'></i>
+            </a>
+        </div>
+
+        <div class="notifikasi-wrapper">
+            <h1>Notifikasi</h1>
+            <div class="filter-container">
+                <select id="filterTipe">
+                    <option value="">Semua Notifikasi</option>
+                    <option value="diskusi">Diskusi</option>
+                    <option value="konsultasi">Konsultasi</option>
+                    <option value="sistem">Sistem</option>
+                </select>
+                <button id="filterButton">Filter</button>
+            </div>
+            <div id="notifikasi-container" class="notifikasi-list">
+                <!-- Notifikasi akan dimuat secara dinamis -->
+                <div id="loading" class="loading">Memuat notifikasi...</div>
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    Tidak ada notifikasi
+                </div>
+            </div>
+            <div class="pagination">
+                <button id="prevPage" disabled>Sebelumnya</button>
+                <span id="currentPage">Halaman 1</span>
+                <button id="nextPage" disabled>Selanjutnya</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

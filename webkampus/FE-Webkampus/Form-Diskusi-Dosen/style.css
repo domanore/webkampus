@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    min-height: 100vh;
+    background: url(../Landing-Page/image/WhatsApp\ Image\ 2024-12-01\ at\ 12.48.31_e52880ea.jpg) no-repeat fixed;
+    background-size: cover;
+    background-position: center;
+    overflow-y: hidden;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2%;
+    background-color: rgba(1, 1, 1, 0.567);
+    border-bottom: 1px solid #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+   
+}
+
+.user {
+    display: flex;
+    position:relative;
+}
+
+#userdropdownMenu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+#userdropdownMenu a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#userdropdownMenu a:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+
+.navbar a {
+    display: flex;
+    font-size: 60px;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+}
+
+.navbar p {
+    font-size: 18px;
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.logo img {
+  height: 50px;
+    
+}
+
+.arrow a i{
+    font-size: 50px;
+    margin: 20px 0 0 30px;
+    color: white;
+    border: 3px solid white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px black;
+    backdrop-filter: blur(20px);
+    position: fixed;
+}
+
+
+
+.background{
+    margin-top: 140px;
+}
+
+.background p{
+    opacity: 10%;
+    height: 95vh;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    
+    margin-left: 10%;
+    position: absolute;
+}
+
+.background p img{
+    height: 80vh;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -40px;
+    
+}
+
+form {
+    border: 1px solid white;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    
+    width: 90%;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.082);
+    
+    position: relative;
+    height: 45px;
+    padding: 20px;
+    font-weight: 400;
+    color: black;
+}
+
+
+
+p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button {
+    position: relative;
+    text-align: center;
+    align-items: center;
+    width: 150px;
+    border-radius: 15px;
+    height: 40px;
+    width: 250px;
+    margin-left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.838);
+    border: 2px solid rgba(0, 0, 0, 0.279);
+}
+
+button:hover {
+    background-color: black;
+    cursor:pointer;
+}
+
+.konsul li {
+    margin-bottom: 40px;
+}

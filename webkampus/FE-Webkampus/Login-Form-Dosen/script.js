@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('userData', JSON.stringify(result.user))
                 
                 // Redirect ke halaman utama
-                window.location.href = '../Tampilan-Awal/index.html'
+                window.location.href = '../Tampilan-Awal-Dosen/index.html'
             } else {
                 alert(result.message)
             }
