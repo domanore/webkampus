@@ -1,8 +1,18 @@
-const path = require('path');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('./sequelize');
 
-module.exports = {
-  'config': path.resolve('dbConfig.js'),
-  'models-path': path.resolve('models'),
-  'seeders-path': path.resolve('seeders'),
-  'migrations-path': path.resolve('migrations')
-}
+class User extends Model {}
+
+User .init({
+  name: {
+    type: DataTypes.STRING,
+  },
+  email: {
+    type: DataTypes.STRING,
+  },
+}, {
+  sequelize,
+  modelName: 'User ',
+});
+
+module.exports = User;
